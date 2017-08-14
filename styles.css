@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  background-color: chartreuse;
+  font-family: sans-serif;
+}
+
+header {
+  padding: 20px;
+  text-align: center;
+  background-color: yellow;
+}
+
+.main-title,
+.sub-title {
+  margin: 0;
+  font-family: 'Changa One', cursive;
+  font-weight: normal;
+}
+
+.main-title {
+  font-size: 100px;
+}
+
+.sub-title {
+  font-size: 40px;
+}
