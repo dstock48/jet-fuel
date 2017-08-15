@@ -17,6 +17,13 @@ header {
   color: #fff;
 }
 
+main {
+  width: 100%;
+  max-width: 500px;
+  padding: 0 10px;
+  margin: 30px auto 0;
+}
+
 .main-title,
 .sub-title {
   margin: 0;
@@ -41,10 +48,6 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 form > * {
@@ -122,12 +125,12 @@ select.folder-select:hover {
 .shortened-url {
   padding: 7px 10px;
   text-align: center;
-  font-size: 40px;
+  font-size: 32px;
   border: 2px dashed #fff;
   background-color: #222;
   color: #fff;
   margin: 0 auto;
-  width: 500px;
+  width: 100%;
   transition: 200ms;
 }
 .shortened-url:hover {
@@ -153,6 +156,10 @@ select.folder-select:hover {
 
   .sub-title {
     font-size: 30px;
+  }
+
+  .shortened-url {
+    font-size: 23px;
   }
 
 }
