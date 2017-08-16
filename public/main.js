@@ -1,29 +1,47 @@
-const submitBtn = $('.submit-btn')
-const urlInput = $('.url-input')
-
-// disableButton(submitBtn)
-
 $(document).ready(function() {
-    fetch('api/v1/urls')
+    fetch('api/v1/links')
       .then(data => data.json())
       .then(data => console.log(data))
+
+    fetch('api/v1/folders')
+      .then(data => data.json())
+      .then(folders => {
+        folders.forEach(folder => {
+          $('.folder-select').append(`<option value="${folder.id}">${folder.folder_name}</option>`)
+        })
+      })
 });
 
-submitBtn.on('click', function(e) {
+$('.submit-btn').on('click', function(e) {
   e.preventDefault()
-  console.log(urlInput.val())
 
-  fetch('api/v1/urls', {
+  const urlInput = $('.url-input');
+  const folderNameInput = $('.folder-name-input');
+  const urlDescInput = $('.url-description');
+
+  fetch('api/v1/links', {
     headers: {
       'Content-Type': 'application/json'
     },
     method: 'POST',
     body: JSON.stringify({
-      longUrl: urlInput.val()
+      long_url: urlInput.val(),
+      title: urlDescInput.val()
     })
   })
 
-  urlInput.val('')
+  fetch('api/v1/folders', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      folder_name: folderNameInput.val()
+    })
+  })
+
+  urlInput.val('');
+  urlDescInput.val('');
 })
 
 // urlInput.on('input', function(e) {
