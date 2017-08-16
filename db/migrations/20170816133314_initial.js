@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('folders', function(table) {
       table.increments('id').primary(); // creates column named 'id' auto-incrementing primary key
       table.string('folder_name'); // creates column the name 'folder_name'
-      table.timestamps(true); // gives us a 'created-at' timestamp
+      table.timestamps(true, true); // gives us a 'created-at' timestamp
     }),
 
     // creates a new table with the name 'links'
@@ -14,7 +14,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary(); // creates column named 'id' auto-incrementing primary key
       table.string('long_url'); // creates column with name 'long_url' to store the long inputed URL
       table.string('short_url'); // creates column with name 'short_url' to store the shortened URL
-      table.timestamps(true); // gives us a 'created-at' timestamp
+      table.timestamps(true, true); // gives us a 'created-at' timestamp
       table.integer('folder_id').unsigned(); // creates foreign key column with the name 'folder_id'
       table.foreign('folder_id').references('folders.id'); // defines the reference table
     })
