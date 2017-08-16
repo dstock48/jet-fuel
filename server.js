@@ -62,9 +62,10 @@ app.route('/api/v1/folders')
         return res.status(422).json({ error: `Missing required parameter: ${requiredParam}`})
       }
     }
-
+    // go to the folders table in the database and insert the new folder
     database('folders').insert(newFolder, 'id')
       .then(folder => {
+        // send back a success code and the id number of the new folder
         res.status(201).json({ id: folder[0] })
       })
       .catch(err => {
@@ -76,12 +77,31 @@ app.route('/api/v1/folders')
 app.route('/api/v1/links')
   // GET method for 'links' route
   .get((req, res) => {
-    res.status(200).json(app.locals.links)
+    database('links').select()
+      .then(links => {
+        res.status(200).json(links)
+      })
+      .catch(err => {
+        res.status(500).json({ err })
+      })
   })
   // POST method for 'links' route
   .post((req, res) => {
-    app.locals.links.push(req.body)
-    console.log(app.locals.links);
+    const newLink = req.body;
+
+    for (let requiredParam of ['long_url', 'title', 'folder_id']) {
+      if (!newLink[requiredParam]) {
+        return res.status(422).json({ error: `Missing required parameter: ${requiredParam}`})
+      }
+    }
+
+    database('links').insert(newLink, 'id')
+      .then(link => {
+        res.status(201).json({ id: link[0] })
+      })
+      .catch(err => {
+        res.status(500).json({ err })
+      })
   })
 
 // tell server to listen for requests from the predefined port number
