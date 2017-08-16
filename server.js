@@ -8,19 +8,30 @@ app.set('port', process.env.PORT || 8888);
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
-app.locals.urls = {
-  1: 'www.google.com',
-  2: 'www.yahoo.com',
-  3: 'www.bing.com'
-};
+app.locals.urls = [
+  {
+    longUrl: 'www.google.com'
+  },
+  {
+    longUrl: 'www.yahoo.com'
+  },
+  {
+    longUrl: 'www.bing.com'
+  }
+];
 
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/index.html`)
-});
-
-app.get('/api/v1/urls', (req, res) => {
-  res.status(200).json(app.locals.urls)
 })
+
+app.route('/api/v1/urls')
+  .get((req, res) => {
+    res.status(200).json(app.locals.urls)
+  })
+  .post((req, res) => {
+    app.locals.urls.push(req.body)
+    console.log(app.locals.urls);
+  })
 
 app.listen(app.get('port'), () => {
   const portNum = app.get('port')
