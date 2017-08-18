@@ -10,4 +10,4 @@ deployment:
   staging:
     branch: staging
     heroku:
-      appname: jet-fuel
+      appname: jet-fuel-8888
