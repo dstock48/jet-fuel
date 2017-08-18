@@ -24,7 +24,7 @@ module.exports = {
     seeds: {
       directory: './db/test/seeds'
     }
-  }
+  },
 
   // staging: {
   //   client: 'postgresql',
