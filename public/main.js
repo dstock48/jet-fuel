@@ -18,7 +18,7 @@ const appendLinkCard = (link) => {
   $(`.container-${link.folder_id}`).append(
     `<a class="link-card" target="_blank" href="http://${link.long_url}">
       <div>
-        <p class="link-date">Date Added: ${moment(link.created_at).format(`M/DD @h:mma`)}</p>
+        <p class="link-date">Date Added: ${moment(link.created_at).format(`M/DD/YY @h:mma`)}</p>
         <p class="link-title">${link.title}</p>
         <p class="link-path">${link.long_url}</p>
       </div>
