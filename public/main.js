@@ -125,7 +125,7 @@ $('.submit-btn').on('click', function(e) {
 })
 
 $('.links-containers').on('click', '.folder-name', function(e) {
-  console.log($(this).siblings().toggleClass('hidden'));
+  $(this).siblings().toggleClass('hidden')
 })
 
 // urlInput.on('input', function(e) {
