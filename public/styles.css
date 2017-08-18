@@ -179,15 +179,17 @@ select.folder-select:hover {
 
 .link-title {
   font-size: 24px;
-  margin-bottom: 5px;
+  margin: 5px 0;
 }
 
 .link-path {
   /*color: #fff;*/
+  font-size: 18px;
 }
 
 .link-date {
   align-self: flex-start;
+  font-size: 14px;
 }
 
 
