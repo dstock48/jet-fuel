@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+h1, h2, h3, p {
+  margin: 0;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -20,7 +24,7 @@ header {
 main {
   width: 100%;
   max-width: 500px;
-  padding: 0 10px;
+  padding: 0 10px 10px;
   margin: 30px auto 0;
 }
 
@@ -71,6 +75,7 @@ button {
   font-size: 26px;
   transition: 150ms;
   padding: 5px 10px;
+  text-transform: uppercase;
 }
 button:hover:not(:disabled) {
   cursor: pointer;
@@ -95,8 +100,8 @@ button:disabled {
   width: 100%;
 }
 
-.folder-name-input {
-
+.folder-name-container {
+  width: 100%;
 }
 
 select.folder-select {
@@ -136,6 +141,58 @@ select.folder-select:hover {
 .shortened-url:hover {
   cursor: copy;
   transform: scale(1.05);
+}
+
+.links-containers > * {
+  margin-bottom: 40px;
+}
+
+.folder-name {
+  display: inline-block;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: #fff;
+  transition: 150ms;
+}
+.folder-name:hover {
+  cursor: pointer;
+  transform: translateX(5px);
+}
+
+.link-card {
+  font-family: Prompt;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #222;
+  color: #fff;
+  transition: 200ms;
+  text-decoration: none;
+}
+.link-card:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.link-title {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.link-path {
+  /*color: #fff;*/
+}
+
+.link-date {
+  align-self: flex-start;
+}
+
+
+.hidden {
+  display: none;
 }
 
 

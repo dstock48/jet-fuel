@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Jet Fuel</title>
     <link rel="stylesheet" href="/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Changa+One|Prompt" rel="stylesheet">
   </head>
   <body>
 
@@ -20,28 +20,38 @@
         <input id="url-input" class="url-input" type="text" placeholder="Enter URL to shorten...">
         <label for="url-description">description</label>
         <input id="url-description" class="url-description" type="text" placeholder="Enter URL description...">
-        <label for="folder-name-input">folder name</label>
-        <input id="folder-name-input" class="folder-name-input" type="text" placeholder="Enter new folder name...">
         <label for="folder-select">folder select</label>
         <select id="folder-select" class="folder-select" name="">
-          <option>--</option>
-          <option>New Folder</option>
+          <option value="choose-folder" selected disabled>Choose a folder...</option>
+          <option value="new-folder">New Folder</option>
         </select>
-        <button class="submit-btn">Shorten</button>
+        <div class="folder-name-container">
+          <label for="folder-name-input">folder name</label>
+          <input id="folder-name-input" class="folder-name-input" type="text" placeholder="Enter new folder name...">
+        </div>
+        <button class="submit-btn">shrtn</button>
       </form>
 
-      <div class="shortened-url-container">
+      <!-- <div class="shortened-url-container">
         <p class="shortened-url-label">Shortened URL:</p>
         <p class="shortened-url">www.jfshrt.com/aNif82</p>
-      </div>
-    </main>
+      </div> -->
 
+      <section class="links-containers">
+
+      </section>
+
+    </main>
 
     <!-- scripts -->
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
       crossorigin="anonymous">
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"
+      charset="utf-8">
     </script>
     <script src="/main.js" charset="utf-8"></script>
 

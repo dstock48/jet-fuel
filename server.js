@@ -20,17 +20,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 // tell express where to look for static resources
 app.use(express.static('public'))
 
-app.locals.links = [
-  {
-    longUrl: 'www.google.com'
-  },
-  {
-    longUrl: 'www.yahoo.com'
-  },
-  {
-    longUrl: 'www.bing.com'
-  }
-];
 
 // GET method for root path to serve up the HTML file
 app.get('/', (req, res) => {
@@ -63,10 +52,10 @@ app.route('/api/v1/folders')
       }
     }
     // go to the folders table in the database and insert the new folder
-    database('folders').insert(newFolder, 'id')
+    database('folders').insert(newFolder, '*')
       .then(folder => {
         // send back a success code and the id number of the new folder
-        res.status(201).json({ id: folder[0] })
+        res.status(201).json(folder[0])
       })
       .catch(err => {
         res.status(500).json({ err });
@@ -95,9 +84,9 @@ app.route('/api/v1/links')
       }
     }
 
-    database('links').insert(newLink, 'id')
+    database('links').insert(newLink, '*')
       .then(link => {
-        res.status(201).json({ id: link[0] })
+        res.status(201).json(link[0])
       })
       .catch(err => {
         res.status(500).json({ err })
@@ -109,3 +98,6 @@ app.listen(app.get('port'), () => {
   const portNum = app.get('port')
   console.log(`Jet Fuel URL Shortener is running on http://localhost:${portNum}`);
 })
+
+
+module.exports = app;
