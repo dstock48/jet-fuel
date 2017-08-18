@@ -14,7 +14,17 @@ module.exports = {
     useNullAsDefault: true // fills any empty columns with a null value
   },
 
-
+  test: {
+    client: 'pg',
+    connection: process.env.DATABASE_URL || 'postgres://localhost/jetfueltest',
+    useNullAsDefault: true,
+    migrations: {
+      directory: './db/migrations'
+    },
+    seeds: {
+      directory: './db/test/seeds'
+    }
+  }
 
   // staging: {
   //   client: 'postgresql',
