@@ -59,8 +59,9 @@ form > * {
 }
 
 label {
+  display: inline-block;
   align-self: flex-start;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -100,11 +101,12 @@ button:disabled {
   width: 100%;
 }
 
-.folder-name-container {
+.folder-name-input-container {
   width: 100%;
 }
 
-select.folder-select {
+.folder-select,
+.sort-order {
   height: 50px;
   width: 100%;
   border: 3px solid black;
@@ -112,7 +114,8 @@ select.folder-select {
   outline: none;
   font-size: 18px;
 }
-select.folder-select:hover {
+.folder-select:hover,
+.sort-order:hover {
   background-color: #222;
   color: #fff;
 }
@@ -143,21 +146,24 @@ select.folder-select:hover {
   transform: scale(1.05);
 }
 
-.links-containers > * {
-  margin-bottom: 40px;
-}
-
 .folder-name {
-  display: inline-block;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding: 5px;
   background-color: #fff;
   transition: 150ms;
 }
 .folder-name:hover {
   cursor: pointer;
-  transform: translateX(5px);
+  transform: translateX(8px);
+}
+
+.fa-folder {
+  margin-right: 10px;
+}
+
+.fa-folder-open {
+  margin-right: 8px;
 }
 
 .link-card {
@@ -175,6 +181,9 @@ select.folder-select:hover {
 .link-card:hover {
   cursor: pointer;
   transform: scale(1.02);
+}
+.link-card:last-child {
+  margin-bottom: 40px;
 }
 
 .link-title {
@@ -195,6 +204,15 @@ select.folder-select:hover {
 
 .hidden {
   display: none;
+}
+
+.links-header {
+  margin-bottom: 30px;
+}
+
+.links-heading {
+  text-align: center;
+  font-size: 30px;
 }
 
 
