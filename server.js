@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const shortHash = require('short-hash');
 
 const app = express();
 
@@ -24,6 +25,21 @@ app.use(express.static('public'))
 // GET method for root path to serve up the HTML file
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/index.html`)
+})
+
+
+app.get('/shrt/:short_url', (req, res) => {
+  console.log(req.params.short_url);
+  const shortUrl = req.params.short_url
+  database('links').where('short_url', shortUrl).select('long_url')
+    .then(longUrl => {
+      console.log(longUrl[0].long_url)
+      // return longUrl[0].long_url
+      res.redirect('https://' + longUrl[0].long_url)
+    })
+    // .then(url => {
+      // res.redirect('http://' + url)
+    // })
 })
 
 
@@ -77,6 +93,8 @@ app.route('/api/v1/links')
   // POST method for 'links' route
   .post((req, res) => {
     const newLink = req.body;
+
+    newLink.short_url = shortHash(newLink.long_url)
 
     for (let requiredParam of ['long_url', 'title', 'folder_id']) {
       if (!newLink[requiredParam]) {
