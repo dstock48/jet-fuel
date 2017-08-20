@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const shortHash = require('short-hash');
+const validUrl = require('valid-url');
 
 // creates the express app and gives access to all the express methods (USE, GET, POST, etc...)
 const app = express();
@@ -38,7 +39,7 @@ app.get('/shrt/:short_url', (req, res) => {
     .select('long_url')  // select that record's long URL
       .then(longUrl => {
         // respond with a redirect status code and a command that tells the browser to redirect to the long URL
-        res.status(302).redirect('https://' + longUrl[0].long_url)
+        res.status(302).redirect(longUrl[0].long_url)
       })
 })
 
@@ -100,6 +101,12 @@ app.route('/api/v1/links')
   // POST method for 'links' route
   .post((req, res) => {
     const newLink = req.body;
+
+    // check to see if the input value from the URL field is a valid web URI
+    if (!validUrl.isWebUri(newLink.long_url)) {
+      // if it is not, return an error status code with an error object
+      return res.status(422).json({ error: `"${newLink.long_url}" is not a valid URL`})
+    }
 
     // add a key of 'short_url' to the request body object containing a value of the shortened URL slug
     newLink.short_url = shortHash(newLink.long_url)
