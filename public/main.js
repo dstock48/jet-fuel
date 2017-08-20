@@ -126,7 +126,7 @@ function appendLinkCard(link) {
       <div>
         <p class="link-date">Date Added: ${moment(link.created_at).format(`M/DD/YY @h:mma`)}</p>
         <p class="link-title">${link.title}</p>
-        <p class="link-path">www.jetfuel.com/${link.short_url}</p>
+        <p class="link-path">${window.origin}/${link.short_url}</p>
       </div>
     </a>`
   )
