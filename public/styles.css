@@ -201,6 +201,11 @@ button:disabled {
   font-size: 14px;
 }
 
+.fa-clock-o,
+.fa-calendar {
+  margin-left: 10px;
+}
+
 
 .hidden {
   display: none;

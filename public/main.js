@@ -1,6 +1,6 @@
 // Event Listeners
 /////////////////////////////////////////////////////////////////
-populateFoldersAndLinks('acc');
+populateFoldersAndLinks('asc');
 $('.folder-name-input-container').hide()
 
 $('#sort-order').on('change', function(e) {
@@ -124,7 +124,9 @@ function appendLinkCard(link) {
   $(`.container-${link.folder_id}`).append(
     `<a class="link-card" target="_blank" href="/shrt/${link.short_url}">
       <div>
-        <p class="link-date">Date Added: ${moment(link.created_at).format(`M/DD/YY @h:mma`)}</p>
+        <p class="link-date">Date Added:
+          <i class="fa fa-calendar" aria-hidden="true"></i>   ${moment(link.created_at).format(`M/DD/YY`)} <i class="fa fa-clock-o" aria-hidden="true"></i> ${moment(link.created_at).format(`h:mma`)}
+        </p>
         <p class="link-title">${link.title}</p>
         <p class="link-path">${window.origin}/${link.short_url}</p>
       </div>
@@ -150,7 +152,7 @@ function populateFoldersAndLinks(sortOrder) {
         for (let i = links.length - 1; i >= 0; i--) {
           appendLinkCard(links[i])
         }
-      } else if(sortOrder === 'acc') {
+      } else if(sortOrder === 'asc') {
         for (let i = 0; i < links.length; i++) {
           appendLinkCard(links[i])
         }
