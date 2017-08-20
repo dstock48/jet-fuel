@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     // this table must be created first so that the links table can have foreign links referring to the folderes table
     knex.schema.createTable('folders', function(table) {
       table.increments('id').primary(); // creates column named 'id' auto-incrementing primary key
-      table.string('folder_name'); // creates column the name 'folder_name'
+      table.string('folder_name').unique(); // creates column for a unique name 'folder_name'
       table.timestamps(true, true); // gives us a 'created-at' timestamp
     }),
 
