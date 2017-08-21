@@ -23,7 +23,7 @@ $('.folder-select').on('change', (e) => {
 
 $('.shortened-url-container').on('click', '.shortened-url', function(e) {
   copyToClipboard('.shortened-url')
-  $('.shortened-url-container').append(
+  $('.copy-msg').replaceWith(
     `<p class="copy-msg">Shrt url copied to clipboard</p>`
   )
 })
@@ -34,8 +34,7 @@ $('.submit-btn').on('click', function(e) {
   const urlInput = $('.url-input');
   const folderNameInput = $('.folder-name-input');
   const urlDescInput = $('.url-description');
-
-  let selectedFolderId = $('.folder-select');
+  const selectedFolderId = $('.folder-select');
 
   const addLink = (url, title, folderID) => {
     fetch('api/v1/links', {
@@ -148,7 +147,8 @@ function appendShortenedUrl(link) {
   $('.shortened-url-container').empty()
   $('.shortened-url-container').append(
     `<p class="shortened-url-label">SHRTND URL</p>
-     <p class="shortened-url">${window.origin}/shrt/${link.short_url}</p>`
+     <p class="shortened-url">${window.origin}/shrt/${link.short_url}</p>
+     <p class="copy-msg"></p>`
   )
 }
 
@@ -185,25 +185,4 @@ function copyToClipboard(element) {
   $temp.val($(element).text()).select();
   document.execCommand("copy");
   $temp.remove();
-}
-
-
-
-// urlInput.on('input', function(e) {
-//   if (e.target.value === '') {
-//     disableButton(submitBtn)
-//   } else {
-//     enableButton(submitBtn)
-//   }
-// })
-
-
-
-
-function enableButton(btnName) {
-  btnName.prop("disabled",false)
-}
-
-function disableButton(btnName) {
-  btnName.prop("disabled",true)
 }
