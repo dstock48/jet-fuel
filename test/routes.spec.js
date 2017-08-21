@@ -15,6 +15,19 @@ chai.use(chaiHttp);
 // CLIENT SIDE ROUTES
 describe('Client-side Routes', () => {
 
+  beforeEach((done) => {
+    database.migrate.rollback()
+    .then(() => {
+      database.migrate.latest()
+      .then(() => {
+        database.seed.run()
+        .then(() => {
+          done();
+        })
+      });
+    });
+  });
+
   it('should return the static HTML file', (done) => {
     chai.request(server)
     .get('/')
@@ -26,7 +39,6 @@ describe('Client-side Routes', () => {
     });
   });
 
-  // THIS TEST PASSES IN MY LOCAL TEST ENV, BUT NOT ON CIRCLECI
   it('should redirect from a shortened URL to a long URL', (done) => {
     chai.request(server)
     .get('/shrt/c4ed952b')
