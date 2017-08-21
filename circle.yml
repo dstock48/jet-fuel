@@ -7,7 +7,12 @@ machine:
     DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/circle_test
 
 deployment:
-  staging:
-    branch: staging
+  production:
+    branch: master
     heroku:
       appname: jet-fuel-8888
+
+test:
+  override:
+    - npm run lint
+    - npm run test
