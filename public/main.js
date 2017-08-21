@@ -21,6 +21,13 @@ $('.folder-select').on('change', (e) => {
   }
 })
 
+$('.shortened-url-container').on('click', '.shortened-url', function(e) {
+  copyToClipboard('.shortened-url')
+  $('.shortened-url-container').append(
+    `<p class="copy-msg">Shrt url copied to clipboard</p>`
+  )
+})
+
 $('.submit-btn').on('click', function(e) {
   e.preventDefault()
 
@@ -44,6 +51,7 @@ $('.submit-btn').on('click', function(e) {
     })
     .then(data => data.json())
     .then(link => {
+      appendShortenedUrl(link)
       appendLinkCard(link)
     })
     .catch(err => console.log(err))
@@ -112,6 +120,7 @@ function appendFolderOption(folder) {
     `<option value="${folder.id}">${folder.folder_name}</option>`
   )
 }
+
 function appendLinkContainer(folder) {
   $('.links-containers').append(
     `<div class="container container-${folder.id}">
@@ -120,6 +129,7 @@ function appendLinkContainer(folder) {
     </div>`
   )
 }
+
 function appendLinkCard(link) {
   $(`.container-${link.folder_id}`).append(
     `<a class="link-card" target="_blank" href="/shrt/${link.short_url}">
@@ -128,9 +138,17 @@ function appendLinkCard(link) {
           <i class="fa fa-calendar" aria-hidden="true"></i>   ${moment(link.created_at).format(`M/DD/YY`)} <i class="fa fa-clock-o" aria-hidden="true"></i> ${moment(link.created_at).format(`h:mma`)}
         </p>
         <p class="link-title">${link.title}</p>
-        <p class="link-path">${window.origin}/${link.short_url}</p>
+        <p class="link-path">${window.origin}/shrt/${link.short_url}</p>
       </div>
     </a>`
+  )
+}
+
+function appendShortenedUrl(link) {
+  $('.shortened-url-container').empty()
+  $('.shortened-url-container').append(
+    `<p class="shortened-url-label">SHRTND URL</p>
+     <p class="shortened-url">${window.origin}/shrt/${link.short_url}</p>`
   )
 }
 
@@ -159,6 +177,14 @@ function populateFoldersAndLinks(sortOrder) {
       }
     })
     .catch(err => console.log(err))
+}
+
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
 }
 
 
