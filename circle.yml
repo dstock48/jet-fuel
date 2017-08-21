@@ -12,7 +12,7 @@ deployment:
     heroku:
       appname: jet-fuel-8888
 
-test:
-  override:
-    - npm run lint
-    - npm run test
+# test:
+#   override:
+#     - npm run lint
+#     - npm run test
