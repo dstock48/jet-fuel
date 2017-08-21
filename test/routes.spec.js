@@ -27,11 +27,11 @@ describe('Client-side Routes', () => {
   });
 
   it('should redirect from a shortened URL to a long URL', (done) => {
-    chai.request(server)
-    .get('/shrt/c4ed952b')
-    .end((err, response) => {
-      response.redirects[0].should.equal('https://www.google.com/')
-    });
+    // chai.request(server)
+    // .get('/shrt/c4ed952b')
+    // .end((err, response) => {
+    //   response.redirects[0].should.equal('https://www.google.com/')
+    // });
 
     chai.request(server)
     .get('/shrt/fee9d4bf')
