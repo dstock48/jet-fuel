@@ -121,29 +121,33 @@ button:disabled {
 }
 
 .shortened-url-container {
-  height: 110px;
+  margin: 40px 0;
   text-align: center;
 }
 
 .shortened-url-label {
-  font-size: 20px;
+  font-size: 30px;
   text-transform: uppercase;
 }
 
 .shortened-url {
   padding: 7px 10px;
   text-align: center;
-  font-size: 32px;
+  font-size: 18px;
   border: 2px dashed #fff;
   background-color: #222;
   color: #fff;
-  margin: 0 auto;
+  margin: 15px auto;
   width: 100%;
   transition: 200ms;
 }
 .shortened-url:hover {
   cursor: copy;
   transform: scale(1.05);
+}
+
+.copy-msg {
+  text-transform: uppercase;
 }
 
 .folder-name {
@@ -240,8 +244,12 @@ button:disabled {
     font-size: 30px;
   }
 
+  .link-path {
+    font-size: 16px;
+  }
+
   .shortened-url {
-    font-size: 23px;
+    font-size: 16px;
   }
 
 }
