@@ -1,0 +1,12 @@
+{
+  "short_name": "JetFuel",
+  "name": "JetFuel URL Shrtnr",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+  ],
+  "start_url": "index.html?launcher=true"
+}
