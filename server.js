@@ -42,7 +42,7 @@ function isSecure(req) {
 }
 
 
-app.use('/', httpsRedirect());
+app.use('/', requireHTTPS());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'))
