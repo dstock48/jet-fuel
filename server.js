@@ -27,22 +27,20 @@ function requireHTTPS(redirectLocalhost) {
 };
 
 function isSecure(req) {
-    // Check the trivial case first.
+
     if (req.secure) {
         return true;
     }
-    // Check if we are behind Application Request Routing (ARR).
-    // This is typical for Azure.
+
     if (req.headers['x-arr-log-id']) {
         return typeof req.headers['x-arr-ssl'] === 'string';
     }
-    // Check for forwarded protocol header.
-    // This is typical for AWS.
+
     return req.headers['x-forwarded-proto'] === 'https';
 }
 
 
-app.use('/', requireHTTPS());
+// app.use('/', requireHTTPS(true));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'))
